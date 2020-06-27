@@ -1,4 +1,4 @@
-import { ILivro, livros } from "../models/livro-interface.ts";
+import { ILivro, livros } from "../models/livro-model.ts";
 import nanoid from "https://deno.land/x/nanoid/mod.ts";
 
 const getLivros = async (
