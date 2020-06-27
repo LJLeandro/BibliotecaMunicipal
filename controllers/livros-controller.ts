@@ -54,10 +54,12 @@ const putLivro = async (
 const deleteLivro = async (
     { params, response} : { params : { id: string } ; response: any },) =>
         {
+            console.log('Exlcuindo...');
+
             let posicaoLivro = livros.findIndex(livro => livro.id == params.id );
             livros.splice(posicaoLivro);
             response.status = 200;
-            response.body = { 'mensagem' : 'Livro Alterado com sucesso' }
+            response.body = { 'mensagem' : 'Livro ExcluÍdo com sucesso' }
 };
 
 // Por fim iremos exportar as funções para que possamos utilizar no arquivos 'routes'

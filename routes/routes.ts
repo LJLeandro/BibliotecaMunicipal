@@ -15,5 +15,5 @@ router.put('/api/v1/livros', putLivro)
 
 router.delete('api/v1/livros/:id', deleteLivro)
 
-// Exportaremoso Router instanciado e carregado para o arquivo que irá inicializar nossa aplicação.
+// Exportaremos o Router instanciado e carregado para o arquivo que irá inicializar nossa aplicação.
 export default router;
