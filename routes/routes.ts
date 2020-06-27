@@ -16,4 +16,6 @@ router.post('/api/v1/livros', postLivro)
 
 router.put('/api/v1/livros', putLivro)
 
+router.delete('api/v1/livros/:id', deleteLivro)
+
 export default router;

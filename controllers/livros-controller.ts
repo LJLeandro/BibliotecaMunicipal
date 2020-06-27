@@ -1,18 +1,19 @@
 import { ILivro, livros } from "../models/livro-model.ts";
 import nanoid from "https://deno.land/x/nanoid/mod.ts";
+import { isMediaType } from "../../../../Users/Lucas/AppData/Local/deno/deps/https/deno.land/81154df8d47c9a9c60986b9ae3886eee2cf43bc6e1a9afaded9dea1c037e5b55.ts";
 
 const getLivros = async (
-    { params, response} : { params : { id: string } ; response: any },) => 
+    { request, response} : { request : { id: string } ; response: any },) => 
         {
             response.status = 200;
             response.body = livros;
 };
 
 const getLivro = async (
-    { params, response} : { params : { id: string } ; response: any },) => 
+    { request, response} : { request : { id: string } ; response: any },) => 
         {
             response.status = 200;
-            response.body = livros.filter(livro => livro.id == params.id);
+            response.body = livros.filter(livro => livro.id == request.id);
 };
 
 const postLivro = async (
@@ -43,4 +44,13 @@ const putLivro = async (
             response.body = { 'mensagem' : 'Livro Alterado com sucesso' }
 };
 
-export { getLivros, getLivro, postLivro, putLivro };
+const deleteLivro = async (
+    { request, response} : { request : { id: string } ; response: any },) =>
+        {
+            let posicaoLivro = livros.findIndex(livro => livro.id == request.id );
+            livros.splice(posicaoLivro);
+            response.status = 200;
+            response.body = { 'mensagem' : 'Livro Alterado com sucesso' }
+};
+
+export { getLivros, getLivro, postLivro, putLivro, deleteLivro };
