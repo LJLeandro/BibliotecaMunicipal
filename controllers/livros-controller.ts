@@ -2,13 +2,15 @@
 import { ILivro, livros } from "../models/livro-model.ts";
 import nanoid from "https://deno.land/x/nanoid/mod.ts";
 
+let arrayLivros = livros;
+
 // Nesse arquivos de controles criaremos funções assincronas que irão realizar as ações de nossa API.
 // A primeira ação será o 'GET' que retornará todos os livros que existem no Array 'livros'
 const getLivros = async (
     { params, response} : { params : { id: string } ; response: any },) => 
         {
             response.status = 200;
-            response.body = livros;
+            response.body = arrayLivros;
 };
 
 // Agora iremos criar um 'GET' por id, que retornará um único livro do Array
@@ -16,7 +18,7 @@ const getLivro = async (
     { params, response} : { params : { id: string } ; response: any },) => 
         {
             response.status = 200;
-            response.body = livros.filter(livro => livro.id == params.id);
+            response.body = arrayLivros.filter(livro => livro.id == params.id);
 };
 
 // O 'POST' irá adicionar uma novo livro no Array
@@ -28,7 +30,7 @@ const postLivro = async (
             const livro: ILivro = body.value;
             livro.id = nanoid(11);
 
-            livros.push(livro)
+            arrayLivros.push(livro)
             
             response.status = 200;
             response.body = { 'mensagem' : 'Livro Incluído com sucesso' }
@@ -44,8 +46,8 @@ const putLivro = async (
             const body = await request.body();
             const livro: ILivro = body.value;
 
-            let posicaoLivro = livros.findIndex(livro => livro.id == livro.id );
-            livros[posicaoLivro] = livro;
+            let posicaoLivro = arrayLivros.findIndex(livro => livro.id == livro.id );
+            arrayLivros[posicaoLivro] = livro;
             response.status = 200;
             response.body = { 'mensagem' : 'Livro Alterado com sucesso' }
 };
@@ -55,11 +57,8 @@ const deleteLivro = async (
     { params, response} : { params : { id: string } ; response: any },) =>
         {
             console.log('Exlcuindo...');
-
-            let posicaoLivro = livros.findIndex(livro => livro.id == params.id );
-            livros.splice(posicaoLivro);
-            response.status = 200;
-            response.body = { 'mensagem' : 'Livro ExcluÍdo com sucesso' }
+            arrayLivros = arrayLivros.filter(livro => livro.id != params.id);
+            response.body = { 'mensagem' : 'Livro Excluído com sucesso!' };
 };
 
 // Por fim iremos exportar as funções para que possamos utilizar no arquivos 'routes'
