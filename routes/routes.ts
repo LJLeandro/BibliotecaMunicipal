@@ -1,5 +1,5 @@
 // Utilizaremos o pacote 'oak' para importar o módulo de rotas
-import { Router, RouterOptions } from "https://deno.land/x/oak/mod.ts";
+import { Router } from "https://deno.land/x/oak/mod.ts";
 // E também utilizaremos as funções exportas do controller
 import { getLivros, getLivro, postLivro, putLivro, deleteLivro } from "../controllers/livros-controller.ts";
 const router = new Router();
