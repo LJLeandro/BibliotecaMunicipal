@@ -5,8 +5,8 @@ import { getLivros, getLivro, postLivro, putLivro, deleteLivro } from "../contro
 
 const router = new Router();
 
-router.get("/api/v1/livros", getLivros).
-        get("/api/v1/livros/:id", getLivro)
+router.get("/api/v1/livros", getLivros)
+        .get("/api/v1/livros/:id", getLivro)
         .post('/api/v1/livros', postLivro)
         .put('/api/v1/livros', putLivro)
         .delete('/api/v1/livros/:id', deleteLivro);
